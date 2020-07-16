@@ -9,6 +9,7 @@ const fs = require('fs')
 const path = require('path')
 const SentryCli = require('@sentry/cli')
 const { promisify, inspect } = require('util')
+const packageJSON = require('./package.json');
 
 const writeFile = promisify(fs.writeFile)
 const deleteFile = promisify(fs.unlink)
@@ -115,15 +116,13 @@ async function createSentryRelease({ pluginApi, release, sentryEnvironment, sour
 }
 
 async function createSentryConfig({ sentryOrg, sentryProject, sentryAuthToken }) {
-  var packageJSON = require('./package.json');
-  const version = packageJSON.version;
   const sentryConfigFile = `
   [auth]
   token=${sentryAuthToken}
   [defaults]
   project=${sentryProject}
   org=${sentryOrg}
-  pipeline=netlify/${version}
+  pipeline=netlify/${packageJSON.version}
   [log]
   level=debug
   `
