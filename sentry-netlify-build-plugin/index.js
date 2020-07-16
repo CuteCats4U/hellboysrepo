@@ -75,13 +75,6 @@ async function createSentryRelease({ pluginApi, release, sentryEnvironment, sour
   const { constants, inputs, utils } = pluginApi
   const cli = new SentryCli()
 
-  console.log(Object.keys(cli.releases.options))
-  console.log(cli.log_level)
-  cli.log_level = 'debug';
-  cli.pipeline = 'netlify';
-  console.log(cli.log_level)
-  console.log(cli.pipeline)
-
   console.log('Creating new release with version: ', release)
 
   // https://docs.sentry.io/cli/releases/#creating-releases
@@ -128,8 +121,9 @@ async function createSentryConfig({ sentryOrg, sentryProject, sentryAuthToken })
   [defaults]
   project=${sentryProject}
   org=${sentryOrg}
-  log_level=debug
   pipeline=netlify
+  [log]
+  level=debug
   `
   await writeFile(SENTRY_CONFIG_PATH, sentryConfigFile, { flag: 'w+' })
 }
