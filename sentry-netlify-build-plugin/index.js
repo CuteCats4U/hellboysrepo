@@ -73,11 +73,11 @@ module.exports = {
 async function createSentryRelease({ pluginApi, release, sentryEnvironment, sourceMapPath, sourceMapUrlPrefix, skipSetCommits, skipSourceMaps }) {
   // default config file is read from ~/.sentryclirc
   const { constants, inputs, utils } = pluginApi
-  const sentryPipeline = 'netlify';
   const cli = new SentryCli()
 
   console.log(Object.keys(cli.releases.options))
   console.log(process.env.SENTRY_LOG_LEVEL)
+  cli.pipeline = 'netlify';
 
   console.log('Creating new release with version: ', release)
 
