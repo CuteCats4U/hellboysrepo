@@ -128,8 +128,8 @@ async function createSentryConfig({ sentryOrg, sentryProject, sentryAuthToken })
   [defaults]
   project=${sentryProject}
   org=${sentryOrg}
-  log_level='debug'
-  pipeline='netlify'
+  log_level=debug
+  pipeline=netlify
   `
   await writeFile(SENTRY_CONFIG_PATH, sentryConfigFile, { flag: 'w+' })
 }
