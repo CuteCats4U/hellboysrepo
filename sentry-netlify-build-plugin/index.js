@@ -115,13 +115,15 @@ async function createSentryRelease({ pluginApi, release, sentryEnvironment, sour
 }
 
 async function createSentryConfig({ sentryOrg, sentryProject, sentryAuthToken }) {
+  var packageJSON = require('./package.json');
+  const version = packageJSON.version;
   const sentryConfigFile = `
   [auth]
   token=${sentryAuthToken}
   [defaults]
   project=${sentryProject}
   org=${sentryOrg}
-  pipeline=netlify
+  pipeline=netlify/${version}
   [log]
   level=debug
   `
