@@ -29,7 +29,6 @@ module.exports = {
     const sentryProject = process.env.SENTRY_PROJECT || inputs.sentryProject
     const sentryAuthToken = process.env.SENTRY_AUTH_TOKEN || inputs.sentryAuthToken
     const sentryRelease = process.env.SENTRY_RELEASE || inputs.sentryRelease || process.env.COMMIT_REF
-    const sentryPipeline = 'netlify';
     const releasePrefix = process.env.SENTRY_RELEASE_PREFIX || inputs.releasePrefix || ''
     const sentryEnvironment = process.env.SENTRY_ENVIRONMENT || process.env.CONTEXT
     const sourceMapPath = inputs.sourceMapPath || PUBLISH_DIR
@@ -74,7 +73,10 @@ module.exports = {
 async function createSentryRelease({ pluginApi, release, sentryEnvironment, sourceMapPath, sourceMapUrlPrefix, skipSetCommits, skipSourceMaps }) {
   // default config file is read from ~/.sentryclirc
   const { constants, inputs, utils } = pluginApi
+  const sentryPipeline = 'netlify';
   const cli = new SentryCli()
+
+  console.dir(cli)
 
   console.log('Creating new release with version: ', release)
 
