@@ -1,5 +1,7 @@
 [[plugins]]
-  package = "@sentry/netlify-build-plugin"
+  package = "@netlify/plugin-local-install-core"
+[[plugins]]
+  package = "../sentry-netlify-build-plugin"
 
 [build]
   command = "npm run build && npm run export"
