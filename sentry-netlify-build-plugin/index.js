@@ -76,8 +76,7 @@ async function createSentryRelease({ pluginApi, release, sentryEnvironment, sour
   const sentryPipeline = 'netlify';
   const cli = new SentryCli()
 
-  console.log(Object.getOwnPropertyNames(cli.releases));
-  console.log(Object.getOwnPropertyNames(cli.options));
+  console.log(Object.keys(cli.releases))
 
   console.log('Creating new release with version: ', release)
 
