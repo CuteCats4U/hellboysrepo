@@ -1,6 +1,6 @@
 const withSourceMaps = require('@zeit/next-source-maps')();
 const { execSync } = require("child_process");
-// const SentryCliPlugin = require('@sentry/webpack-plugin');
+const SentryCliPlugin = require('@sentry/webpack-plugin');
 
 module.exports = withSourceMaps({
   env: {
