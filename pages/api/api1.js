@@ -7,6 +7,7 @@ export default (req, res) => {
     res.send('Success');
   } catch (error) {
     Sentry.captureException(error);
+    await Sentry.flush(2000);
     res.status(500).send("Something broke");
   }
 };

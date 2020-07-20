@@ -5,5 +5,6 @@ export default (req, res) => {
   });
   if (res.statusCode === 500) {
     Sentry.captureMessage(res.statusMessage, 'fatal')
+    await Sentry.flush(2000);
   }
 };
