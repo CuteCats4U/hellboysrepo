@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/node'
 
-export default (req, res) => {
+export default async (req, res) => {
   try {
     let obj = {};
     obj.doesNotExist();
